@@ -1,0 +1,11 @@
+SELECT DISTINCT * {
+?s rdf:type <http://dbpedia.org/ontology/ProgrammingLanguage> .
+?s dbpedia2:name ?name .
+?s rdfs:label ?label .
+?s <http://dbpedia.org/ontology/abstract> ?abstract .
+?s dbpedia2:year ?year .
+OPTIONAL { ?s <http://dbpedia.org/ontology/designer> ?designer . }
+FILTER (lang(?name) = "en") .
+FILTER (lang(?label) = "en") .
+FILTER (lang(?abstract) = "en") .
+}
