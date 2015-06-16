@@ -1,0 +1,7 @@
+SELECT DISTINCT ?a, $b, ?an, ?bn WHERE {
+?a <http://dbpedia.org/ontology/influencedBy> ?b.
+?a rdf:type <http://dbpedia.org/ontology/ProgrammingLanguage>.
+?b rdf:type <http://dbpedia.org/ontology/ProgrammingLanguage>.
+?a foaf:name ?an.
+?b foaf:name ?bn.
+}
