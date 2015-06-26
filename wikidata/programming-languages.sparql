@@ -1,0 +1,11 @@
+PREFIX ent: <http://www.wikidata.org/entity/>
+PREFIX prop: <http://www.wikidata.org/prop/direct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?pl ?label WHERE {
+    ?pl prop:P31/prop:P279* ent:Q9143 .
+    OPTIONAL {
+        ?pl rdfs:label ?label .
+        FILTER ( LANG(?label) = "en" )
+    }
+}

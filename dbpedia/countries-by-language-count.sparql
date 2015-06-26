@@ -1,0 +1,10 @@
+PREFIX onto: <http://dbpedia.org/ontology/>
+
+SELECT ?uri ?string count(?language) WHERE {
+    ?uri  rdf:type onto:Country  .
+    ?uri onto:language ?language .
+    OPTIONAL {
+         ?uri rdfs:label ?string . FILTER (lang(?string) = 'en')
+    }
+}
+ORDER BY DESC(count(?language)) LIMIT 100
