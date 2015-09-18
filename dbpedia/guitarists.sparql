@@ -1,0 +1,8 @@
+PREFIX dbp-ont: <http://dbpedia.org/ontology/>
+SELECT DISTINCT ?person ?label
+WHERE {
+    ?person rdfs:label ?label .
+    ?person rdf:type dbp-ont:MusicalArtist .
+    ?person dbpedia2:instrument :Guitar .
+    FILTER (lang(?label) = "en") .
+} ORDER BY DESC(?label)

@@ -1,11 +1,11 @@
-PREFIX ent: <http://www.wikidata.org/entity/>
-PREFIX prop: <http://www.wikidata.org/prop/direct/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 
-SELECT ?pl ?label WHERE {
-    ?pl prop:P31/prop:P279* ent:Q9143 .
+SELECT ?langid ?language WHERE {
+    ?langid wdt:P31 wd:Q9143 .
+
     OPTIONAL {
-        ?pl rdfs:label ?label .
-        FILTER ( LANG(?label) = "en" )
+        ?langid rdfs:label ?language filter (lang(?language) = "en") .
     }
 }
