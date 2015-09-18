@@ -1,0 +1,10 @@
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+SELECT ?cid ?country WHERE {
+    ?cid wdt:P31 wd:Q3624078 .
+    OPTIONAL {
+        ?cid rdfs:label ?country filter (lang(?country) = "en") .
+    }
+}
