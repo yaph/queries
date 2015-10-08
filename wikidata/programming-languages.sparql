@@ -1,11 +1,17 @@
+prefix schema: <http://schema.org/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 
-SELECT ?langid ?language WHERE {
+SELECT ?langid ?language ?article WHERE {
     ?langid wdt:P31 wd:Q9143 .
 
     OPTIONAL {
         ?langid rdfs:label ?language filter (lang(?language) = "en") .
+    }
+    OPTIONAL {
+        ?article schema:about ?langid .
+        ?article schema:inLanguage "en" .
+        FILTER (SUBSTR(str(?article), 1, 25) = "https://en.wikipedia.org/")
     }
 }
