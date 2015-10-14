@@ -1,0 +1,13 @@
+SELECT subreddit, total, sub_hour, num_with_min_score
+FROM (
+  SELECT
+    HOUR(SEC_TO_TIMESTAMP(created - 60*60*5)) as sub_hour,
+    SUM(score >= 1000) as num_with_min_score,
+    SUM(num_with_min_score) OVER(PARTITION BY subreddit) total,
+    subreddit,
+  FROM [fh-bigquery:reddit_posts.full_corpus_201509]
+  GROUP BY sub_hour, subreddit
+  ORDER BY subreddit, sub_hour
+)
+WHERE total>100
+ORDER BY total DESC, sub_hour

@@ -1,0 +1,14 @@
+SELECT subreddit, dayofweek, hourofday, num_with_min_score, total
+FROM (
+  SELECT
+    DAYOFWEEK(SEC_TO_TIMESTAMP(created - 60*60*5)) as dayofweek,
+    HOUR(SEC_TO_TIMESTAMP(created - 60*60*5)) as hourofday,
+    SUM(score >= 1000) as num_with_min_score,
+    SUM(num_with_min_score) OVER(PARTITION BY subreddit) total,
+    subreddit,
+  FROM [fh-bigquery:reddit_posts.full_corpus_201509]
+  GROUP BY subreddit, dayofweek, hourofday
+  ORDER BY subreddit, dayofweek, hourofday
+)
+WHERE total>100
+ORDER BY total DESC, dayofweek, hourofday
