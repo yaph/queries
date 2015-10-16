@@ -1,7 +1,7 @@
 SELECT subreddit, total, sub_hour, num_with_min_score
 FROM (
   SELECT
-    HOUR(SEC_TO_TIMESTAMP(created - 60*60*5)) as sub_hour,
+    HOUR(created_utc) as sub_hour,
     SUM(score >= 1000) as num_with_min_score,
     SUM(num_with_min_score) OVER(PARTITION BY subreddit) total,
     subreddit,
