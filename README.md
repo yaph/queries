@@ -1,0 +1,3 @@
+A collection of database queries in SPARQL, SQL and dialects to retrieve data from sources such as Google BigQuery, StackOverflow, DBpedia and wikidata.
+
+You can see the application of these queries and how to process and visualize the resulting data in different [Jupyter notebooks](http://ramiro.org/notebooks/) and tools like the [Reddit Post Times Explorer](http://ramiro.org/tools/reddit-post-times/).
