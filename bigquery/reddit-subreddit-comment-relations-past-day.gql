@@ -1,0 +1,14 @@
+-- based on http://minimaxir.com/2016/05/reddit-graph/
+SELECT a.subreddit_name as Source, b.subreddit_name as Target, COUNT(*) as Weight
+FROM (
+    SELECT author, LOWER(subreddit) as subreddit_name, COUNT(DISTINCT(link_id)) as thread_count
+    FROM [pushshift:rt_reddit.comments@-86400000-]
+    GROUP BY author, subreddit_name
+    HAVING thread_count >= 5) a JOIN (
+    SELECT author, LOWER(subreddit) as subreddit_name, COUNT(DISTINCT(link_id)) as thread_count
+    FROM [pushshift:rt_reddit.comments@-86400000-]
+    GROUP BY author, subreddit_name
+    HAVING thread_count >= 5) b ON a.author = b.author
+GROUP BY Source, Target
+HAVING Source < Target AND Weight >= 200
+ORDER BY Weight DESC

@@ -1,0 +1,7 @@
+SELECT body, author, created_utc, link_id, parent_id, score, gilded, id, subreddit
+FROM
+    (TABLE_QUERY([fh-bigquery:reddit_comments], 'table_id CONTAINS "2015_"')) t)
+WHERE (
+    REGEXP_MATCH(body, r'redbubble\.com')
+)
+ORDER BY score DESC
