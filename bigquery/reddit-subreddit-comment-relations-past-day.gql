@@ -10,5 +10,5 @@ FROM (
     GROUP BY author, subreddit_name
     HAVING thread_count >= 5) b ON a.author = b.author
 GROUP BY Source, Target
-HAVING Source < Target AND Weight >= 200
+HAVING Source < Target AND Weight >= 5
 ORDER BY Weight DESC
