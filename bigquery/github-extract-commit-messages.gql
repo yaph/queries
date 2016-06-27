@@ -1,0 +1,13 @@
+SELECT repo.name, actor.login,
+
+REGEXP_EXTRACT(
+    SPLIT(
+        JSON_EXTRACT(payload, '$.commits'),
+        "},{"
+    ),
+    r'\"message\"\:\"(.+?)\",'
+) AS message
+
+FROM [githubarchive:day.20160627]
+WHERE type = 'PushEvent'
+LIMIT 10
