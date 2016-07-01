@@ -1,0 +1,11 @@
+SELECT msg, COUNT(msg) AS msg_count FROM (
+
+  SELECT LOWER(REGEXP_REPLACE(message, r'^\s+|\s+$', '')) AS msg
+  FROM [bigquery-public-data:github_repos.commits]
+
+)
+
+WHERE LEFT(msg, 5) != 'merge'
+GROUP BY msg
+ORDER BY msg_count DESC
+LIMIT 1000000
