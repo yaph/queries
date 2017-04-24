@@ -1,0 +1,10 @@
+(
+    node
+        ["amenity"~"^\(pub|bar|biergarten\)$"]
+        ({{bbox}});
+    way
+        ["amenity"~"^\(pub|bar|biergarten\)$"]
+        ({{bbox}});
+);
+(._;>;);
+out;

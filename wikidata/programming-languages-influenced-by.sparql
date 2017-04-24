@@ -1,0 +1,8 @@
+#defaultView:Graph
+SELECT ?item ?itemLabel ?_influenced_by ?_influenced_byLabel
+WHERE
+{
+  ?item wdt:P31 wd:Q9143.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  OPTIONAL { ?item wdt:P737 ?_influenced_by. }
+}
