@@ -1,0 +1,7 @@
+SELECT ?musician ?musicianLabel ?member_of ?member_ofLabel WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+  ?musician wdt:P106 wd:Q639669.
+  ?musician wdt:P136 ?genre.
+  ?musician wdt:P463 ?member_of.
+  FILTER(?genre = wd:Q11399).
+}
