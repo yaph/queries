@@ -1,5 +1,6 @@
 PREFIX entity: <http://www.wikidata.org/entity/>
 
-SELECT ?predicate ?object WHERE {
-  entity:Q28865 ?predicate ?object .
+SELECT ?predicate ?object
+WHERE {
+    entity:Q28865 ?predicate ?object .
 }
