@@ -1,0 +1,37 @@
+SELECT ?item ?itemLabel
+    ?Commons_category
+    ?Free_Software_Directory_entry
+    ?file_extension
+    ?inception
+    ?official_website
+    ?source_code_repository
+    ?Stack_Exchange_tag
+
+    ?designed_by ?designed_byLabel
+    ?developer ?developerLabel
+    ?influenced_by ?influenced_byLabel
+    ?license ?licenseLabel
+    ?named_after ?named_afterLabel
+    ?operating_system ?operating_systemLabel
+    ?programming_paradigm ?programming_paradigmLabel
+
+WHERE {
+    ?item wdt:P31 wd:Q9143.
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+
+    OPTIONAL { ?item wdt:P373 ?Commons_category. }
+    OPTIONAL { ?item wdt:P2537 ?Free_Software_Directory_entry. }
+    OPTIONAL { ?item wdt:P1195 ?file_extension. }
+    OPTIONAL { ?item wdt:P571 ?inception. }
+    OPTIONAL { ?item wdt:P856 ?official_website. }
+    OPTIONAL { ?item wdt:P1324 ?source_code_repository. }
+    OPTIONAL { ?item wdt:P1482 ?Stack_Exchange_tag. }
+
+    OPTIONAL { ?item wdt:P287 ?designed_by. }
+    OPTIONAL { ?item wdt:P178 ?developer. }
+    OPTIONAL { ?item wdt:P737 ?influenced_by. }
+    OPTIONAL { ?item wdt:P275 ?license. }
+    OPTIONAL { ?item wdt:P138 ?named_after. }
+    OPTIONAL { ?item wdt:P306 ?operating_system. }
+    OPTIONAL { ?item wdt:P3966 ?programming_paradigm. }
+}

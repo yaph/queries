@@ -1,8 +1,8 @@
 #defaultView:Graph
-SELECT ?item ?itemLabel ?_influenced_by ?_influenced_byLabel
+SELECT ?item ?itemLabel ?influenced_by ?influenced_byLabel
 WHERE
 {
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-  ?item wdt:P31 wd:Q9143.
-  ?item wdt:P737 ?_influenced_by.
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+    ?item wdt:P31 wd:Q9143.
+    ?item wdt:P737 ?influenced_by.
 }

@@ -1,0 +1,36 @@
+#Data for Python programming langauge based on http://tinyurl.com/y89wd4oy
+PREFIX entity: <http://www.wikidata.org/entity/>
+
+SELECT ?propNumber ?propLabel ?val
+WHERE
+{
+    hint:Query hint:optimizer 'None' .
+    {   BIND(entity:Q28865 AS ?valUrl) .
+        BIND('N/A' AS ?propUrl ) .
+        BIND('Name'@en AS ?propLabel ) .
+        entity:Q28865 rdfs:label ?val .
+        FILTER (LANG(?val) = 'en')
+    }
+    UNION
+    {   entity:Q28865 ?propUrl ?valUrl .
+        ?property ?ref ?propUrl .
+        ?property rdf:type wikibase:Property .
+        ?property rdfs:label ?propLabel.
+        FILTER (lang(?propLabel) = 'en' )
+        FILTER isliteral(?valUrl)
+        BIND(?valUrl AS ?val)
+    }
+    UNION
+    {   entity:Q28865 ?propUrl ?valUrl .
+        ?property ?ref ?propUrl .
+        ?property rdf:type wikibase:Property .
+        ?property rdfs:label ?propLabel.
+        FILTER (lang(?propLabel) = 'en' )
+        FILTER isIRI(?valUrl)
+        ?valUrl rdfs:label ?valLabel
+        FILTER (LANG(?valLabel) = 'en')
+        BIND(CONCAT(?valLabel) AS ?val)
+    }
+    BIND( SUBSTR(str(?propUrl),38, 250) AS ?propNumber)
+}
+ORDER BY xsd:integer(?propNumber)
