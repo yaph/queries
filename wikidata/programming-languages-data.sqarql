@@ -16,7 +16,7 @@ SELECT ?item ?itemLabel
     ?programming_paradigm ?programming_paradigmLabel
 
 WHERE {
-    ?item wdt:P31 wd:Q9143.
+    ?item p:P31/ps:P31 wd:Q9143.
     SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 
     OPTIONAL { ?item wdt:P373 ?Commons_category. }

@@ -3,6 +3,6 @@ SELECT ?item ?itemLabel ?influenced_by ?influenced_byLabel
 WHERE
 {
     SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-    ?item wdt:P31 wd:Q9143.
+    ?item p:P31/ps:P31 wd:Q9143.
     ?item wdt:P737 ?influenced_by.
 }
