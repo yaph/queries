@@ -1,0 +1,10 @@
+SELECT ?human ?humanLabel ?date_of_birth ?date_of_death ?cause_of_deathLabel
+WHERE {
+    ?human wdt:P31 wd:Q5.
+    ?human wdt:P509 ?cause_of_death.
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+    FILTER(?cause_of_death = wd:Q132781)
+    OPTIONAL { ?human wdt:P569 ?date_of_birth. }
+    OPTIONAL { ?human wdt:P570 ?date_of_death. }
+}
+LIMIT 100

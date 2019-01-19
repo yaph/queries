@@ -1,0 +1,8 @@
+SELECT DISTINCT ?item ?itemLabel ?instrumentLabel
+WHERE {
+    ?item (wdt:P106/wdt:P279*) wd:Q639669.
+    ?item wdt:P1303 ?instrument.
+    FILTER (?instrument IN (wd:Q61285, wd:Q6607)).
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+Limit 100
