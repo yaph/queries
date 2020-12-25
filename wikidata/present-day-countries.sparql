@@ -1,0 +1,9 @@
+# List of present-day countries and iso 3 codes
+SELECT DISTINCT ?country ?countryLabel ?code
+WHERE
+{
+  ?country wdt:P31 wd:Q3624078 .
+  ?country wdt:P298 ?code .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
+}
+ORDER BY ?countryLabel
