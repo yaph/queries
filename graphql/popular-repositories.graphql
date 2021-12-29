@@ -1,0 +1,20 @@
+query popularRepositories {
+  viewer {
+    repositories(orderBy: {field: STARGAZERS, direction: DESC}, first: 100, isFork: false, isLocked: false, affiliations: OWNER, privacy: PUBLIC) {
+      nodes {
+        nameWithOwner
+        primaryLanguage {
+          name
+        }
+        forkCount
+        stargazerCount
+        issues {
+          totalCount
+        }
+        licenseInfo {
+          name
+        }
+      }
+    }
+  }
+}
