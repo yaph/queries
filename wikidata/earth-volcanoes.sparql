@@ -1,0 +1,20 @@
+# Volcanoes on Earth with location and elevation in meters
+SELECT DISTINCT ?item ?name ?lat ?lon ?elevation
+WHERE
+{
+    ?item wdt:P31 wd:Q8072 ;
+        p:P2044 [ a wikibase:BestRank; psn:P2044/wikibase:quantityAmount ?elevation ] ;
+        p:P625 [
+            psv:P625 [
+                wikibase:geoLatitude ?lat ;
+                wikibase:geoLongitude ?lon ;
+                wikibase:geoGlobe ?globe ;
+            ] ;
+        ]
+    FILTER ( ?globe = wd:Q2 )
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
+        ?item rdfs:label ?name
+    }
+}
+ORDER BY DESC(?elevation)
