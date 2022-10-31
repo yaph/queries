@@ -1,3 +1,4 @@
+# humans who where tortured to death
 SELECT ?human ?humanLabel ?date_of_birth ?date_of_death ?cause_of_deathLabel
 WHERE {
     ?human wdt:P31 wd:Q5.

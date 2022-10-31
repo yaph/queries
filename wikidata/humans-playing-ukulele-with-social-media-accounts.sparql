@@ -1,0 +1,17 @@
+# humans playing ukulele with social media accounts
+SELECT DISTINCT ?item ?itemLabel ?itemDescription ?sitelinks
+                (GROUP_CONCAT(DISTINCT ?instagram; SEPARATOR=", ") AS ?instagram_names)
+                (GROUP_CONCAT(DISTINCT ?tiktok; SEPARATOR=", ") AS ?tiktok_names)
+                (GROUP_CONCAT(DISTINCT ?youtube; SEPARATOR=", ") AS ?youtube_channels)
+WHERE {
+    ?item wdt:P31 wd:Q5;
+          wdt:P1303 wd:Q61285;
+          wdt:P2003 ?instagram;
+          wdt:P7085 ?tiktok;
+          wdt:P2397 ?youtube;
+          wikibase:sitelinks ?sitelinks.
+
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en" }
+}
+GROUP BY ?item ?itemLabel ?itemDescription ?sitelinks
+ORDER BY DESC(?sitelinks)

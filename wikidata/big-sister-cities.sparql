@@ -1,3 +1,4 @@
+# big sister cities
 SELECT ?city ?cityLabel ?city_population ?city_coordinate_location ?sister ?sisterLabel ?sister_population ?sister_coordinate_location WHERE {
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
     ?city wdt:P31 wd:Q515.
