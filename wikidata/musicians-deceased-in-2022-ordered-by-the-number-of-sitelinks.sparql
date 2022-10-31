@@ -1,0 +1,20 @@
+# musicians deceased in 2022 ordered by the number of sitelinks
+SELECT ?person ?personLabel ?died ?sitelinks
+       (GROUP_CONCAT(DISTINCT ?bandLabel; SEPARATOR=", ") AS ?bandLabels)
+WHERE {
+    ?person wdt:P31 wd:Q5;
+            wdt:P106/wdt:P279* wd:Q639669;
+            wdt:P570 ?died.
+
+    FILTER (?died >= "2022-01-01T00:00:00Z"^^xsd:dateTime && ?died < "2023-01-01T00:00:00Z"^^xsd:dateTime)
+
+    ?person wikibase:sitelinks ?sitelinks.
+
+    OPTIONAL { ?person wdt:P463 ?band. }
+
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en" .
+                             ?band rdfs:label ?bandLabel.
+                             ?person rdfs:label ?personLabel.}
+}
+GROUP BY ?person ?personLabel ?died ?sitelinks
+ORDER BY desc(?sitelinks)

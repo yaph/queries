@@ -1,0 +1,10 @@
+# bodyweight exercises
+SELECT ?item ?itemLabel ?image
+WHERE
+{
+  ?item wdt:P31*/wdt:P279* wd:Q450743.
+
+  OPTIONAL { ?item wdt:P18 ?image. }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}

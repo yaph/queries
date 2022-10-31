@@ -1,0 +1,9 @@
+# programming languages with implementation language
+SELECT DISTINCT ?item ?itemLabel ?implangLabel
+WHERE
+{
+  ?item wdt:P31*/wdt:P279* wd:Q9143;
+        wdt:P277 ?implang.
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}

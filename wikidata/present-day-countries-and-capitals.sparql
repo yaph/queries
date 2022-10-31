@@ -1,0 +1,14 @@
+# present-day countries and capitals
+SELECT DISTINCT ?country ?countryLabel ?capital ?capitalLabel
+WHERE
+{
+  ?country wdt:P31 wd:Q3624078 .
+
+  FILTER NOT EXISTS {?country wdt:P31 wd:Q3024240} # former country
+  FILTER NOT EXISTS {?country wdt:P31 wd:Q28171280} # ancient civilisation
+
+  OPTIONAL { ?country wdt:P36 ?capital } .
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
+}
+ORDER BY ?countryLabel

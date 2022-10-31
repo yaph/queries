@@ -1,0 +1,13 @@
+# programming languages with paradigms
+SELECT ?item ?itemLabel (GROUP_CONCAT(DISTINCT ?valueLabel; separator=", ") AS ?values)
+WHERE
+{
+  ?item wdt:P31*/wdt:P279* wd:Q9143.
+  ?item wdt:P3966 ?value.
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
+    ?item rdfs:label ?itemLabel.
+    ?value rdfs:label ?valueLabel.
+  }
+}
+GROUP BY ?item ?itemLabel
