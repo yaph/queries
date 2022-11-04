@@ -1,0 +1,13 @@
+# Programming Languages with Sitelinks
+SELECT DISTINCT ?item ?itemLabel ?sitelinks
+WHERE
+{
+  ?item (wdt:P31/wdt:P279*) wd:Q9143;
+        wikibase:sitelinks ?sitelinks;
+        rdfs:label ?itemLabel.
+
+  FILTER(?sitelinks > 0).
+  FILTER(LANG(?itemLabel) = "en").
+
+  MINUS { ?item wdt:P31 wd:184148. } # no plug-ins
+}
