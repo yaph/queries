@@ -1,0 +1,7 @@
+SELECT DISTINCT ?item ?itemLabel ?inspired_by ?inspired_byLabel
+WHERE
+{
+  ?item (wdt:P31/wdt:P279*) wd:Q9143;
+        wdt:P941 ?inspired_by.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
