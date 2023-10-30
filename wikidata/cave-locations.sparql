@@ -1,0 +1,15 @@
+# Cave locations around the world
+SELECT DISTINCT ?item ?name ?coords ?country ?length WHERE {
+  ?item (wdt:P31/(wdt:P279*)) wd:Q35509.
+  MINUS { ?item wdt:P576 _:b1. }
+  ?item wdt:P625 ?coords;
+    wdt:P2043 ?length;
+    rdfs:label ?name.
+  FILTER((LANG(?name)) = "en")
+  OPTIONAL {
+    ?item wdt:P17 ?c.
+    ?c rdfs:label ?country.
+    FILTER((LANG(?country)) = "en")
+  }
+}
+ORDER BY (?itemLabel)
