@@ -1,0 +1,15 @@
+# Border cities of the world - based on w.wiki/6m6c
+# To filter by country add FILTER (?country = wd:Qxx)
+# To show the cities of several countries use FILTER (?country IN (wd:Qxx, wd:Qyy))
+# To obtain cities that are part of a particular continent or territory ?country
+# should not be optional and add "?country wdt:P361 wd:Qxx ."
+SELECT ?border_city ?city_name ?country_name ?coords
+WHERE {
+  ?border_city wdt:P31 wd:Q902814.
+  ?border_city wdt:P17 ?country.
+  ?border_city wdt:P625 ?coords.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
+                         ?border_city rdfs:label ?city_name.
+                         ?country  rdfs:label ?country_name.}
+}
+ORDER BY ?country_name ?city_name
