@@ -1,13 +1,17 @@
 # Libraries of the world
-SELECT DISTINCT ?item ?label ?coords (SAMPLE(?collsize) AS ?collection_size) (SAMPLE(?url) AS ?website)
+SELECT DISTINCT ?item ?label ?coords ?country (SAMPLE(?url) AS ?website)
 WHERE {
   ?item wdt:P31/wdt:P279* wd:Q7075. # libraries or subtypes
   ?item wdt:P856 ?url.
   ?item wdt:P625 ?coords.
-  ?item wdt:P1436 ?collsize.
+  ?item wdt:P17 ?country_id.
+
   MINUS { ?item wdt:P576 [] } # exclude those that have shut down
+
   ?item rdfs:label ?label.
   FILTER(LANG(?label) = "en")
+
+  ?country_id rdfs:label ?country.
+  FILTER(LANG(?country) = "en")
 }
-GROUP BY ?item ?label ?coords
-ORDER BY DESC(?collection_size)
+GROUP BY ?item ?label ?coords ?country
