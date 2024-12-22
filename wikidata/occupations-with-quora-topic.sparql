@@ -1,0 +1,9 @@
+#Occupations
+SELECT DISTINCT ?item ?itemLabel
+WHERE
+{
+  ?item (wdt:P31/wdt:P279*) wd:Q12737077; # must be an occupation
+        wdt:P3417 ?quora_topic_id.
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
